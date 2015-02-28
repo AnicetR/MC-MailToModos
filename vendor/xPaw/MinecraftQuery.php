@@ -1,6 +1,6 @@
 <?php
 
-namespace vendor\MinecraftQuery;
+namespace vendor\xPaw;
 
 class MinecraftQuery
 {
@@ -24,6 +24,8 @@ class MinecraftQuery
 		{
 			throw new \InvalidArgumentException( 'Timeout must be an integer.' );
 		}
+        $ErrNo = 0;
+        $ErrStr = '';
 
 		$this->Socket = @FSockOpen( 'udp://' . $Ip, (int)$Port, $ErrNo, $ErrStr, $Timeout );
 
