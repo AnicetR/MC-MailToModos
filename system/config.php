@@ -4,7 +4,7 @@ namespace system;
 
 class Config{
 
-    public static $application = array();
+    public static $app = array();
     public static $database   = array();
     public static $server = array();
 
@@ -15,7 +15,7 @@ class Config{
      */
     public static function load()
     {
-        self::$application = require APP.'config'.DS.'application.php';
+        self::$app = require APP.'config'.DS.'app.php';
         self::$database = require APP . 'config' . DS . 'database.php';
         self::$server = require APP.'config'.DS.'server.php';
     }
