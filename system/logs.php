@@ -21,7 +21,7 @@ class Logs{
     public static function write($file, $type, $line){
         if(Config::$app['enable_logs']){
             $path = APP.DS.'logs'.DS.$file.'.log';
-            $line = '['.$type.'] '.date('j/m/d h:m:s').' : '.$line."\r\n";
+            $line = '['.$type.'] '.date('d/m/Y H:i:s').' : '.$line."\r\n";
             return file_put_contents($path, $line, FILE_APPEND);
         }
         else
