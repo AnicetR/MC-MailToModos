@@ -69,7 +69,7 @@ class Cache {
     public function cached($filename)
     {
         $filename = $this->path.$filename.'.json';
-        if(file_exists($filename) && (filemtime($filename) + $this->time < time())){
+        if(file_exists($filename) && (filemtime($filename) + $this->time >= time())){
             return true;
         }
         return false;
