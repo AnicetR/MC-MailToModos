@@ -2,6 +2,7 @@
 
 namespace vendor\xPaw;
 
+use system\Logs;
 class MinecraftQuery
 {
 	/*
@@ -16,7 +17,7 @@ class MinecraftQuery
 
 	private $Socket;
 	private $Players;
-	private $Info;
+	protected $Info;
 
 	public function Connect( $Ip, $Port = 25565, $Timeout = 3 )
 	{
@@ -52,6 +53,7 @@ class MinecraftQuery
 		}
 
 		FClose( $this->Socket );
+        Logs::write('querys', 'Dev', 'query OK!');
 	}
 
 	public function GetInfo( )
