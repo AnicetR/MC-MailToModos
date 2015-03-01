@@ -20,7 +20,6 @@ class Cache {
         $this->time = $time*60;
 
         if($this->activated){
-
             if(!is_dir($this->path)) {
                 if (mkdir($this->path, 0755))
                     Logs::write('Cache', 'Succes', 'Le dossier ' . $this->path . ' a bien été créé');
@@ -52,9 +51,10 @@ class Cache {
     public function get($filename)
     {
         if($this->activated){
-            $filename = $this->path.$filename.'.json';
-            if($this->cached($filename))
-                return json_decode(file_get_contents($filename), true);
+            if($this->cached($filename)){
+                Logs::write('Cache','Info', 'Le cache '.$filename.'.json existe déjà, récupération.');
+                return json_decode(file_get_contents($this->path.$filename.'.json'), true);
+            }
             return false;
         }
         return false;
@@ -68,8 +68,10 @@ class Cache {
      */
     public function cached($filename)
     {
-        if(file_exists($filename) && (filemtime($filename) + $this->time >= time()))
+        $filename = $this->path.$filename.'.json';
+        if(file_exists($filename) && (filemtime($filename) + $this->time < time())){
             return true;
+        }
         return false;
     }
 }
