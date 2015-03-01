@@ -6,6 +6,7 @@ namespace app;
 use system\Config;
 use vendor\CLIFramework\CLI;
 use app\models\Queries;
+use system\Logs;
 
 class Procedure extends CLI{
 
@@ -42,9 +43,14 @@ class Procedure extends CLI{
 |_____|__,|___|_|_|___|_|_|_|_|_|_  |
                                 |___|
 
-      ",
+",
 
             "LIGHT_BLUE");
         }
+
+    public function flag_v(){
+        Config::$app['verbose'] = true;
+        Logs::write('app','Info', "Execution en mode verbeux\n");
+    }
 
 }

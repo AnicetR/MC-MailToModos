@@ -34,14 +34,12 @@ class MinecraftQuery
 		{
 			throw new MinecraftQueryException( 'Could not create socket: ' . $ErrStr );
 		}
-
 		Stream_Set_Timeout( $this->Socket, $Timeout );
 		Stream_Set_Blocking( $this->Socket, true );
 
 		try
 		{
 			$Challenge = $this->GetChallenge( );
-
 			$this->GetStatus( $Challenge );
 		}
 		// We catch this because we want to close the socket, not very elegant
@@ -53,7 +51,7 @@ class MinecraftQuery
 		}
 
 		FClose( $this->Socket );
-        Logs::write('querys', 'Dev', 'query OK!');
+
 	}
 
 	public function GetInfo( )

@@ -10,6 +10,7 @@ return [
 
     'enable_cache' => true,                       //Activer/désactiver le cache
     'enable_logs' => true,                        //Activer/désactiver les logs
+    'verbose' => false,
 
 //test
     'permissions_refresh_rate' => 1,              //Periode entre chaque mise à jour du cache des permissions | En minutes

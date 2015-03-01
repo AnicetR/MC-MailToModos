@@ -9,6 +9,7 @@
 namespace system;
 use system\Config;
 
+
 class Logs{
 
     /**
@@ -22,10 +23,33 @@ class Logs{
         if(Config::$app['enable_logs']){
             $path = APP.DS.'logs'.DS.$file.'.log';
             $line = '['.$type.'] '.date('d/m/Y H:i:s').' : '.$line."\r\n";
+            self::printLog($file,$type,$line);
             return file_put_contents($path, $line, FILE_APPEND);
         }
         else
             return true;
+    }
+
+    public static function printLog($file, $type,$line){
+        if(Config::$app['verbose']){
+            print "[".strToUpper($file)."]";
+            switch($type){
+                case 'Succes':
+                    print chr(27).'[0;32m'.$line.chr(27).'[0m';
+                    break;
+                case 'Info':
+                case 'Infos':
+                case 'Dev':
+                    print chr(27).'[1;33m'.$line.chr(27).'[0m';
+                    break;
+                case 'Erreur':
+                    print chr(27).'[0;31m'.$line.chr(27).'[0m';
+                    break;
+                default:
+                    print chr(27).'[1;37m'.$line.chr(27).'[0m';
+                    break;
+            }
+        }
     }
 
 

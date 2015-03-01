@@ -25,11 +25,12 @@ class Queries extends MinecraftQuery{
 
         try{
             $this->Connect($this->host, $this->port);
+            Logs::write('Queries', 'Info', "Query OK! Récupérations des infos...");
             $this->getServerInfos();
             $this->getPlayersList();
         }
         catch(MinecraftQueryException $e){
-            Logs::write('querys', 'Error', $e->getMessage());
+            Logs::write('Queries', 'Error', $e->getMessage());
             return;
         }
     }
