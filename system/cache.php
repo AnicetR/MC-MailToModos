@@ -15,16 +15,19 @@ class Cache {
      */
     function __construct($path, $time = 10)
     {
-
-        $this->path = APP.'cache'.DS.$path.DS;
-        if(!is_dir($this->path)){
-            if(mkdir($this->path, 0755))
-                Logs::write('Cache','Info', 'Le dossier '.$this->path.' a bien été créé');
-            else
-                Logs::write('Cache','Erreur', 'Le dossier '.$this->path.' n\'a pas pu être créé');
-        }
-        $this->time = $time*60;
         $this->activated = Config::$app['enable_cache'];
+        $this->path = APP.'cache'.DS.$path.DS;
+        $this->time = $time*60;
+
+        if($this->activated){
+
+            if(!is_dir($this->path)) {
+                if (mkdir($this->path, 0755))
+                    Logs::write('Cache', 'Succes', 'Le dossier ' . $this->path . ' a bien été créé');
+                else
+                    Logs::write('Cache', 'Erreur', 'Le dossier ' . $this->path . ' n\'a pas pu être créé');
+            }
+        }
     }
 
     /**
@@ -36,7 +39,7 @@ class Cache {
     {
         if($this->activated)
             if(file_put_contents($this->path.$filename.'.json', json_encode($content)))
-                Logs::write('Cache','Info', 'Le cache '.$filename.'.json a bien été créé');
+                Logs::write('Cache','Succes', 'Le cache '.$filename.'.json a bien été créé');
             else
                 Logs::write('Cache','Erreur', 'Le cache '.$filename.'.json n\'a pas pu être créé');
     }
