@@ -21,7 +21,6 @@ class Procedure extends CLI{
 
         print $this->launchMessage();
         $getPlayers = new Queries(Config::$server['query_host'], Config::$server['query_port']);
-        $getPlayers->getPlayersList();
 
     }
     private function launchMessage(){
