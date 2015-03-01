@@ -2,13 +2,13 @@
 
 Application CLI Dev en PHP 5.6.4
 
-##Lancement de l'application
+## Lancement de l'application
 ```sh
 $ php mailToModos.php [-v]
 ```
 L'option -v permet de lancer l'appli en verbose mode.
 
-##Fonctionnement :
+## Fonctionnement :
 Le fonctionnement est simple, le script sera développé en PHP histoire d’éviter pas mal de soucis de perfs sur le serveur et de réduire au maximum la densité de code. Le script est exécuté toutes les 5 à 10 minutes. En fonction du nombre de joueurs et des pics définis dans la config, il calcule le ratio modo/joueurs et répond au besoin défini par l’admin.
 
 Admettons que la config soit définie comme ci-dessous :
