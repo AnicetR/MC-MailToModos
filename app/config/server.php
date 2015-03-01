@@ -7,6 +7,6 @@
  */
 
 return [
-        'query_host' => '195.154.39.66',
-        'query_port' => 25579
+        'query_host' => 'sky.freecraft.eu', //'195.154.39.66',
+        'query_port' => 25555        //25577
 ];
