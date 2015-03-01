@@ -6,9 +6,9 @@ date_default_timezone_set('Europe/Paris');
 setlocale(LC_TIME, "fr_FR");
 
 define('DS', DIRECTORY_SEPARATOR);
-define('VENDOR', __DIR__.DS.'vendor'.DS);
-define('SYS', __DIR__.DS.'system'.DS);
-define('APP', __DIR__.DS.'app'.DS);
+define('VENDOR', '.'.DS.'vendor'.DS);
+define('SYS','.'.DS.'system'.DS);
+define('APP', '.'.DS.'app'.DS);
 
 
 // Autoloader

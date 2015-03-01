@@ -3,7 +3,9 @@
 
 namespace app;
 
+use system\Config;
 use vendor\CLIFramework\CLI;
+use app\models\Queries;
 
 class Procedure extends CLI{
 
@@ -17,6 +19,8 @@ class Procedure extends CLI{
     {
 
         print $this->launchMessage();
+        $getPlayers = new Queries(Config::$server['query_host'], Config::$server['query_port']);
+        $getPlayers->getPlayersList();
 
     }
     private function launchMessage(){
