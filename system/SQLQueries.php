@@ -9,14 +9,14 @@
 namespace system;
 use system\Database;
 
-class Querys {
+class SQLQueries {
 
     protected $pdo;
 
     /**
      * Récupération de PDO
      */
-    protected function __CONSTRUCT(){
+    function __CONSTRUCT(){
         $this->pdo = Database::getInstance();
     }
 
@@ -72,7 +72,6 @@ class Querys {
                 $sql .= implode(' AND ', $where);
             }
         }
-
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll();

@@ -1,15 +1,12 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: anice_000
- * Date: 28/02/2015
- * Time: 20:14
+ * Code de gotha modifié pour l'occas'
  */
 
 namespace system;
+use \PDO;
 
-class Database
-{
+class Database{
     /**
      * @var  variable statique de l'instace de la pdo
      */
@@ -28,7 +25,7 @@ class Database
                 self::$instance = new PDO( $info['driver'].":dbname=". $info['database'].";host=". $info['host'], $info['user'], $info['password'], array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES UTF8'));
                 self::$instance->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
             } catch (PDOException $e) {
-                if(Config::$application['environment'] == "development")
+                if(Config::$app['environment'] == "development")
                     die('Connection failed: '. $e->getMessage());
                 else
                     die('Impossible de se connecter à la base de donnée');
