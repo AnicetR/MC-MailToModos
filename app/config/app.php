@@ -12,8 +12,8 @@ return [
     'enable_logs' => true,                        //Activer/désactiver les logs
     'verbose' => false,
 
-//test
-    'permissions_refresh_rate' => 1,              //Periode entre chaque mise à jour du cache des permissions | En minutes
+
+    'permissions_refresh_rate' => 1,              //Periode entre chaque mise à jour du cache des permissions | En heures
     'query_refresh_rate' => 1,                    //Periode entre chaque mise à jour du cache des joueurs connectés | En minutes
 
     'players_peaks' => [
