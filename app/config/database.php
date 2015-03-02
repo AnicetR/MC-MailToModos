@@ -11,7 +11,7 @@ return [
     [ //Utilisée par défaut
         'driver'   => 'mysql',
         'host'     => 'localhost',
-        'database' => 'earlygames_save',
+        'database' => 'earlygames',
         'user'     => 'root',
         'password' => ''
     ],
