@@ -14,7 +14,7 @@ use system\Cache;
 use system\Config;
 
 class Queries extends MinecraftQuery{
-    private $host, $port;
+    private $host, $port, $cache;
 
     public function __construct($host, $port){
         if(!filter_var($host, FILTER_VALIDATE_IP))
@@ -22,6 +22,8 @@ class Queries extends MinecraftQuery{
 
         $this->host = $host;
         $this->port = $port;
+
+        $this->cache = new Cache('queries', Config::$app['query_refresh_rate']);
 
         try{
             $this->Connect($this->host, $this->port);
@@ -38,27 +40,26 @@ class Queries extends MinecraftQuery{
     public function getServerInfos(){
         $cacheFile = 'serverInfos';
 
-        $cache = new Cache('queries', Config::$app['query_refresh_rate']);
-        if(!$cache->cached($cacheFile)){
+        if(!$this->cache->cached($cacheFile)){
             $serverInfos = $this->getInfo();
-            $cache->set($cacheFile, $serverInfos);
+            $this->cache->set($cacheFile, $serverInfos);
             return $serverInfos;
         }
         else
-            return $cache->get($cacheFile);
+            return $this->cache->get($cacheFile);
     }
 
     public function getPlayersList(){
         $cacheFile = 'playersList';
 
-        $cache = new Cache('queries', Config::$app['query_refresh_rate']);
-        if(!$cache->cached($cacheFile)){
+
+        if(!$this->cache->cached($cacheFile)){
             $playersList = $this->getPlayers();
-            $cache->set($cacheFile, $playersList);
+            $this->cache->set($cacheFile, $playersList);
             return $playersList;
         }
         else
-            return $cache->get($cacheFile);
+            return $this->cache->get($cacheFile);
     }
 
 

@@ -3,10 +3,12 @@
 
 namespace app;
 
-use system\Config;
-use vendor\CLIFramework\CLI;
-use app\models\Queries;
-use system\Logs;
+use system\Config,
+    vendor\CLIFramework\CLI,
+    app\models\Queries,
+    app\models\Pex,
+    system\Logs;
+
 
 class Procedure extends CLI{
 
@@ -21,7 +23,8 @@ class Procedure extends CLI{
 
         print $this->launchMessage();
         $getPlayers = new Queries(Config::$server['query_host'], Config::$server['query_port']);
-
+        $test = new Pex();
+        $test->getModos();
     }
     private function launchMessage(){
         return  $this->colorText("
