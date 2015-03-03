@@ -31,18 +31,13 @@ class Pex extends SQLQueries{
             return $this->cache->get($this->modosCache);
 
         else{
-            $modos = [];
-            $request = "SELECT child, parent FROM $this->permissions_inheritance WHERE parent LIKE 'mod' OR parent LIKE 'jrmod'";
-
-            foreach($this->query($request) as $modo){
-                $child = $modo['child'];
-                $request = "SELECT `value` FROM $this->permissions WHERE `name` LIKE ".'"'.$child.'"'." AND permission LIKE ".'"name"'; //#crado
-
-                $datas = $this->query($request);
-                if(!empty($datas))
-                    $modos[] = [$datas[0]['value'], $modo['parent']];
-            }
-
+            $request = "SELECT p.value AS `name`, pi.parent AS `role`
+                        FROM $this->permissions_inheritance AS pi
+                        LEFT JOIN $this->permissions AS p
+                        ON (pi.child = p.name  AND p.permission LIKE 'name')
+                        WHERE (pi.parent LIKE 'mod' OR pi.parent LIKE 'jrmod') AND p.value IS NOT NULL
+                        ";
+            $modos = $this->query($request);
             $this->cache->set($this->modosCache, $modos);
             return $modos;
         }

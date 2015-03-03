@@ -8,7 +8,7 @@
 
 namespace system;
 use system\Database;
-
+use \PDO;
 class SQLQueries {
 
     protected $pdo;
@@ -27,10 +27,9 @@ class SQLQueries {
      */
 
     protected function query($req){
-        print_r($req);
         $stmt = $this->pdo->prepare($req);
         $stmt->execute();
-        return $stmt->fetchAll();
+        return $stmt->fetchAll(PDO::FETCH_OBJ);
     }
 //    protected function select($req){
 //        $sql = 'SELECT ';
