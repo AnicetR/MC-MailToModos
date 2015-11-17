@@ -52,7 +52,7 @@ class Cache {
     {
         if($this->activated){
             if($this->cached($filename)){
-                Logs::write('Cache','Info', 'Le cache '.$filename.'.json existe déjà, récupération.');
+                Logs::write('Cache','Info', 'Récupération du cache '.$filename.'.json');
                 return json_decode(file_get_contents($this->path.$filename.'.json'), true);
             }
             return false;
