@@ -1,2 +1,5 @@
 /.idea
 /.git
+/app/cache/pex/*
+/app/cache/queries/*
+/app/logs/*
