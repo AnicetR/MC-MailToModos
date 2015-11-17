@@ -7,7 +7,8 @@ use system\Config,
     vendor\CLIFramework\CLI,
     app\models\Queries,
     app\models\Pex,
-    system\Logs;
+    system\Logs,
+    app\helpers\onlineModos;
 
 
 class Procedure extends CLI{
@@ -20,11 +21,11 @@ class Procedure extends CLI{
 
     public function main()
     {
-
         print $this->launchMessage();
-        $getPlayers = new Queries(Config::$server['query_host'], Config::$server['query_port']);
-        $test = new Pex();
-        $test->getModos();
+        $queries = new Queries(Config::$server['query_host'], Config::$server['query_port']);
+        $pex = new Pex();
+        $pex->getModos();
+        onlineModos::get();
     }
     private function launchMessage(){
         return  $this->colorText("
