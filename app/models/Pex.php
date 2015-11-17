@@ -24,7 +24,6 @@ class Pex extends SQLQueries{
     }
 
     public function getModos(){
-
         Logs::write('Pex', 'Info', 'Récupération de la liste des modérateurs');
 
         if($this->cache->cached($this->modosCache))
@@ -37,6 +36,7 @@ class Pex extends SQLQueries{
                         ON (pi.child = p.name  AND p.permission LIKE 'name')
                         WHERE (pi.parent LIKE 'mod' OR pi.parent LIKE 'jrmod') AND p.value IS NOT NULL
                         ";
+            echo($request);
             $modos = $this->query($request);
             $this->cache->set($this->modosCache, $modos);
             return $modos;
